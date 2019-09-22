@@ -2,6 +2,18 @@
 
 *队伍：我永远喜欢阿尔托莉雅*
 
+## 环境
+
++ python3
++ CUDA 9.0
++ Tensorflow 1.7
+
+## 说明
+
++ securityAI_round1_images内的图片已经移除，请自行下载放入，链接为：https://pan.baidu.com/s/1zr9aiqsZQrIDdSNSsH1o9g ， 提取码：4296
++ models文件夹内的模型已移除，请自行下载放入，链接为：https://pan.baidu.com/s/1du8U1cnvCzO9ZPJ2v4Ky9w ，提取码：ru81
++ lfw文件夹内图片已移除，请自行下载放入（注意确保其子文件夹为new112），链接为：https://pan.baidu.com/s/1Lqmvo40F4tKeaqeIY5CW3w ，提取码：lg16
+
 ## 解题及算法思路
 
 本次赛题设计背景为对已在工业界有成熟应用的人脸识别系统发起攻击，按攻击分类是黑盒无目标攻击
@@ -12,7 +24,7 @@
 
 ### 2.模型准备
 
-insightface中提供有一些网络及其对应的预训练模型，但是由于insightface原项目基于mxnet，而在mxnet中编写攻击算法并不方便，故使用mmdnn将其中的Resnet100，Resnet50，Resnet34以及Mobilenet都转换为Tensorflow格式的模型，并且生成相应的网络结构代码，在所有网络结构代码中将KitModel的init方法中的data placeholder注释掉，改为从外部传入（方便后期做模型ensemble时求梯度）。
+insightface中提供有一些网络及其对应的预训练模型，但是由于insightface原项目基于mxnet，而在mxnet中编写攻击算法并不方便，故使用mmdnn将其中的Resnet100，Resnet50，Resnet34以及Mobilenet都转换为Tensorflow格式的模型（转换Mobilenet时会报错，需要手工修改MMdnn的代码），并且生成相应的网络结构代码，在所有网络结构代码中将KitModel的init方法中的data placeholder注释掉，改为从外部传入（方便后期做模型ensemble时求梯度）。
 
 ### 3.数据集
 
@@ -36,3 +48,10 @@ insightface中提供有一些网络及其对应的预训练模型，但是由于
 ![3.77](3.77.jpg)
 
 全图攻击扰动为7.44  检测特征点后扰动为3.77
+
+## 参考及引用
+
++ [MMdnn](https://github.com/microsoft/MMdnn)
++ [insightface](https://github.com/deepinsight/insightface)
++ [facenet](https://github.com/davidsandberg/facenet)
++ [LFW](http://vis-www.cs.umass.edu/lfw/)
